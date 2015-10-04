@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ysX-TR-guc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="xWi-36-2GA">
+            <objects>
+                <navigationController id="ysX-TR-guc" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lwa-Ls-Vm7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EkD-3v-tCo" kind="relationship" relationship="rootViewController" id="330-3g-UPN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E9a-c5-dNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-201" y="213"/>
+        </scene>
+        <!--Meme Maker-->
+        <scene sceneID="Uga-Gq-c7p">
+            <objects>
+                <viewController id="EkD-3v-tCo" customClass="ViewController" customModule="Meme_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HXy-hA-DJQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fd2-gx-f0m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vvt-Vy-0bZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jk1-0K-D6y">
+                                <rect key="frame" x="125" y="177" width="71" height="30"/>
+                                <state key="normal" title="Get Image"/>
+                                <connections>
+                                    <action selector="selectImage:" destination="EkD-3v-tCo" eventType="touchUpInside" id="bFx-zy-v5u"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Top Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ifc-OC-ku1">
+                                <rect key="frame" x="35" y="210" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="7IK-5a-ljT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <action selector="textFieldFinished:" destination="EkD-3v-tCo" eventType="editingDidEndOnExit" id="FyF-vy-phW"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ihT-SZ-D9F">
+                                <rect key="frame" x="-4" y="346" width="328" height="222"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeCell" id="obv-iP-5nD">
+                                        <rect key="frame" x="0.0" y="28" width="328" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="obv-iP-5nD" id="Wd2-Zf-MYb">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="EkD-3v-tCo" id="aeI-CU-Jsf"/>
+                                    <outlet property="delegate" destination="EkD-3v-tCo" id="GGG-ba-CQa"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpC-EV-yWx">
+                                <rect key="frame" x="127" y="293" width="66" height="35"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitImage:" destination="EkD-3v-tCo" eventType="touchUpInside" id="iqR-Ji-JHc"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bp5-zP-bgP">
+                                <rect key="frame" x="110" y="75" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bp5-zP-bgP" secondAttribute="height" multiplier="1:1" id="Q7C-Hd-3Pj"/>
+                                    <constraint firstAttribute="width" constant="100" id="ku1-d0-k7Q"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bottom Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KKe-Tm-2ky">
+                                <rect key="frame" x="35" y="248" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="XNV-Q8-Qse"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <action selector="textFieldFinished:" destination="EkD-3v-tCo" eventType="editingDidEndOnExit" id="Qio-Mh-f2E"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93334240951742631" green="0.93334240951742631" blue="0.93334240951742631" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ihT-SZ-D9F" firstAttribute="top" secondItem="dpC-EV-yWx" secondAttribute="bottom" constant="18" id="0u1-9c-61X"/>
+                            <constraint firstItem="dpC-EV-yWx" firstAttribute="centerX" secondItem="Vvt-Vy-0bZ" secondAttribute="centerX" id="6cj-cq-Thc"/>
+                            <constraint firstItem="jk1-0K-D6y" firstAttribute="centerX" secondItem="Vvt-Vy-0bZ" secondAttribute="centerX" id="F4O-bG-D16"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ihT-SZ-D9F" secondAttribute="trailing" constant="-20" id="Kdr-wm-xeM"/>
+                            <constraint firstItem="KKe-Tm-2ky" firstAttribute="centerX" secondItem="Vvt-Vy-0bZ" secondAttribute="centerX" id="N00-ae-3z2"/>
+                            <constraint firstItem="bp5-zP-bgP" firstAttribute="top" secondItem="HXy-hA-DJQ" secondAttribute="bottom" constant="13" id="O4N-ii-8tF"/>
+                            <constraint firstItem="ifc-OC-ku1" firstAttribute="centerX" secondItem="Vvt-Vy-0bZ" secondAttribute="centerX" id="VMc-m8-Hfr"/>
+                            <constraint firstItem="ifc-OC-ku1" firstAttribute="top" secondItem="jk1-0K-D6y" secondAttribute="bottom" constant="3" id="W3o-H6-ZAn"/>
+                            <constraint firstItem="bp5-zP-bgP" firstAttribute="centerX" secondItem="Vvt-Vy-0bZ" secondAttribute="centerX" id="X24-fM-Bhj"/>
+                            <constraint firstItem="bp5-zP-bgP" firstAttribute="top" secondItem="HXy-hA-DJQ" secondAttribute="bottom" constant="11" id="mrn-Wc-fRz"/>
+                            <constraint firstItem="dpC-EV-yWx" firstAttribute="top" secondItem="KKe-Tm-2ky" secondAttribute="bottom" constant="15" id="pOi-wQ-lYK"/>
+                            <constraint firstItem="Fd2-gx-f0m" firstAttribute="top" secondItem="ihT-SZ-D9F" secondAttribute="bottom" id="rv0-x0-cX7"/>
+                            <constraint firstItem="KKe-Tm-2ky" firstAttribute="top" secondItem="ifc-OC-ku1" secondAttribute="bottom" constant="8" id="tA7-UW-ABc"/>
+                            <constraint firstItem="jk1-0K-D6y" firstAttribute="top" secondItem="bp5-zP-bgP" secondAttribute="bottom" constant="2" id="vJ5-1e-nhx"/>
+                            <constraint firstItem="ihT-SZ-D9F" firstAttribute="leading" secondItem="Vvt-Vy-0bZ" secondAttribute="leadingMargin" constant="-20" id="yMu-5j-mo7"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="O4N-ii-8tF"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Meme Maker" id="bsw-o1-OOW"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="bottomTextField" destination="KKe-Tm-2ky" id="h57-df-1Ox"/>
+                        <outlet property="imageView" destination="bp5-zP-bgP" id="eVH-zO-DIh"/>
+                        <outlet property="tableView" destination="ihT-SZ-D9F" id="VY6-7c-GkD"/>
+                        <outlet property="topTextField" destination="ifc-OC-ku1" id="Jgv-Zl-yV1"/>
+                        <segue destination="CFi-g9-cq6" kind="show" identifier="ShowMeme" id="JKl-h5-y4B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7xm-xa-zBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="226" y="213"/>
+        </scene>
+        <!--Meme View Controller-->
+        <scene sceneID="BYn-SX-dcD">
+            <objects>
+                <viewController id="CFi-g9-cq6" customClass="MemeViewController" customModule="Meme_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wap-d4-g4d"/>
+                        <viewControllerLayoutGuide type="bottom" id="f5d-3W-0Ra"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xkn-h4-RQb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mIQ-Bz-dQI">
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mIQ-Bz-dQI" secondAttribute="height" multiplier="1:1" id="Tox-o2-z1O"/>
+                                    <constraint firstAttribute="width" constant="320" id="k1h-Dw-8B7"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38K-8D-5cq">
+                                <rect key="frame" x="93" y="532" width="134" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Pje-6G-Boe"/>
+                                    <constraint firstAttribute="width" constant="65" id="snL-SD-wdY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Share This Meme"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="snL-SD-wdY"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="shareMeme:" destination="CFi-g9-cq6" eventType="touchUpInside" id="agX-td-d4M"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mIQ-Bz-dQI" firstAttribute="centerX" secondItem="Xkn-h4-RQb" secondAttribute="centerX" id="3Qh-3V-0VF"/>
+                            <constraint firstItem="f5d-3W-0Ra" firstAttribute="top" secondItem="38K-8D-5cq" secondAttribute="bottom" id="HS9-2B-ZBr"/>
+                            <constraint firstItem="mIQ-Bz-dQI" firstAttribute="centerY" secondItem="Xkn-h4-RQb" secondAttribute="centerY" id="MYz-UT-BC8"/>
+                            <constraint firstItem="38K-8D-5cq" firstAttribute="centerX" secondItem="Xkn-h4-RQb" secondAttribute="centerX" id="Xcs-6C-Oue"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="38K-8D-5cq" secondAttribute="trailing" constant="-20" id="lPa-fZ-dM3"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lPa-fZ-dM3"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="mIQ-Bz-dQI" id="jux-HT-0Vg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UZ6-Zm-eOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="624" y="213"/>
+        </scene>
+    </scenes>
+</document>

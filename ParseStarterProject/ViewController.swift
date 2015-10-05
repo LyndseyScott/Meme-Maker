@@ -25,14 +25,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         tableView.layer.borderColor = UIColor.blackColor().CGColor
         tableView.layer.borderWidth = 1
         
+        tableView.allowsMultipleSelectionDuringEditing = false
+        
+        fetchMemesFromPersistentMemory()
+    }
+    
+    func fetchMemesFromPersistentMemory() {
         if let savedMemes = NSUserDefaults.standardUserDefaults().valueForKey("meme_array") as? [[AnyObject]] {
             for meme in savedMemes {
                 memeArray += [(image:UIImage(data: meme[0] as! NSData)!, topText:meme[1] as! String, bottomText:meme[2] as! String)]
             }
         }
-
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -97,15 +102,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             bottomTextField.text = nil
             imageView.image = nil
             
-            var arrayToSave:[[AnyObject]] = []
-            for meme in memeArray {
-                let objectArray:[AnyObject] = [UIImagePNGRepresentation(meme.image)!, meme.topText, meme.bottomText]
-                arrayToSave += [objectArray]
-            }
-            
-            NSUserDefaults.standardUserDefaults().setValue(arrayToSave, forKey: "meme_array")
-            
+            saveMemesToPersistentMemory()
         }
+    }
+    
+    func saveMemesToPersistentMemory() {
+        var arrayToSave:[[AnyObject]] = []
+        for meme in memeArray {
+            let objectArray:[AnyObject] = [UIImagePNGRepresentation(meme.image)!, meme.topText, meme.bottomText]
+            arrayToSave += [objectArray]
+        }
+        
+        NSUserDefaults.standardUserDefaults().setValue(arrayToSave, forKey: "meme_array")
     }
     
     @IBAction func textFieldFinished(sender: UITextField) {
@@ -121,7 +129,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MemeCell", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier("MemeCell", forIndexPath: indexPath)
         cell.imageView?.image = memeArray[indexPath.row].image
         cell.textLabel?.text = "+ \"\(memeArray[indexPath.row].topText)\" + \"\(memeArray[indexPath.row].bottomText)\""
         cell.textLabel?.numberOfLines = 4
@@ -131,6 +139,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("ShowMeme", sender: nil)
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            memeArray.removeAtIndex(indexPath.row)
+            saveMemesToPersistentMemory()
+            tableView.reloadData()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
